@@ -64,12 +64,24 @@ Use the higher-order function getWinners to do the following:
 // if.. home then ..away- compare points
 
 function getWinners(array, getFinalsCb) {
-    let winnersArray = [];
-    array.forEach(function(item){
-        winnersArray.push(`${item["Home Team Name"]}, ${item["Away Team Goal"]} === ${["Final"]}`);
-    })
-  return winnersArray(getFinalsCb);
-}
+    let winners = [];
+    let finals = getFinalsCb(array);
+    finals.forEach(function(item){
+        
+    if(item["Home Team Goals"] > item["Away Team Goals"]){
+        winners.push(item["Home Team Name"]);
+    } else if(item["Away Team Goals"] > item["Home Team Goals"]){
+        winners.push(item["Away Team Name"]);
+    }
+
+    });
+      return winners;
+    }
+
+    
+   
+
+
 
 
 
